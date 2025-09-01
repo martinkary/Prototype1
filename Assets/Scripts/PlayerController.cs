@@ -7,9 +7,13 @@ public class PlayerController : MonoBehaviour
 
     public float verticalInput;
     public float horizontalInput;
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {   
+
         
     }
 
@@ -20,5 +24,13 @@ public class PlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
         transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput * verticalInput);
+
+        if (Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
+
+
     }
 }
